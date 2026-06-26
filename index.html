@@ -26,7 +26,6 @@
       overflow-x: hidden;
     }
 
-    /* ── City-grid background ─────────────────────────────── */
     .bg-layer {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background:
@@ -38,7 +37,6 @@
           rgba(244,163,28,.025) 89px, rgba(244,163,28,.025) 90px);
     }
 
-    /* ── CRT scanlines ───────────────────────────────────── */
     .scanlines {
       position: fixed; inset: 0; z-index: 999; pointer-events: none;
       background: repeating-linear-gradient(
@@ -48,14 +46,13 @@
       );
     }
 
-    /* ── Layout ──────────────────────────────────────────── */
     .container {
       position: relative; z-index: 1;
       max-width: 980px; margin: 0 auto;
       padding: 52px 24px 70px;
     }
 
-    /* ── HUD corner ──────────────────────────────────────── */
+    /* ── HUD ─────────────────────────────────────────────── */
     .hud {
       position: fixed; top: 22px; right: 22px; z-index: 100;
       background: rgba(0,0,0,.78);
@@ -122,7 +119,7 @@
       border: 1px solid rgba(244,163,28,.22); border-radius: 2px; overflow: hidden;
     }
     .prog-fill {
-      height: 100%; width: 6.25%;
+      height: 100%; width: 40%; /* 6 de 15 */
       background: linear-gradient(90deg, var(--orange-dark), var(--orange));
       box-shadow: 0 0 14px rgba(244,163,28,.5); position: relative;
     }
@@ -149,9 +146,7 @@
       margin-bottom: 18px;
       display: flex; align-items: center; gap: 14px;
     }
-    .section-head::after {
-      content: ''; flex: 1; height: 1px; background: rgba(244,163,28,.14);
-    }
+    .section-head::after { content: ''; flex: 1; height: 1px; background: rgba(244,163,28,.14); }
 
     /* ── Grid ────────────────────────────────────────────── */
     .grid {
@@ -171,7 +166,7 @@
       transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
 
-    /* ── DONE (verde) ─────────────────────────────────────── */
+    /* DONE */
     .card.done {
       background: rgba(0,18,6,.88);
       border-color: rgba(39,174,96,.22);
@@ -182,39 +177,17 @@
       border-color: rgba(39,174,96,.55);
       box-shadow: -4px 0 18px rgba(39,174,96,.14), 0 0 22px rgba(39,174,96,.07);
     }
-    .card.done .badge  { color: var(--green); background: rgba(39,174,96,.08); border-color: rgba(39,174,96,.28); }
+    .card.done .badge    { color: var(--green); background: rgba(39,174,96,.08); border-color: rgba(39,174,96,.28); }
     .card.done .card-name { color: var(--green-bright); }
     .card.done .card-tag  { color: #1d7a44; }
 
-    /* ── ACTIVE (naranja — en curso / disponible) ─────────── */
-    @keyframes pulse-border {
-      0%, 100% { border-left-color: var(--orange); }
-      50%       { border-left-color: var(--orange-dark); }
-    }
-    .card.active {
-      background: rgba(20,12,0,.9);
-      border-color: rgba(244,163,28,.28);
-      border-left-color: var(--orange);
-      animation: pulse-border 2s ease-in-out infinite;
-    }
-    .card-link:hover .card.active {
-      transform: translateX(5px);
-      border-color: rgba(244,163,28,.65);
-      box-shadow: -4px 0 18px rgba(244,163,28,.18), 0 0 24px rgba(244,163,28,.08);
-      animation: none;
-      border-left-color: var(--orange);
-    }
-    .card.active .badge    { color: var(--orange); background: rgba(244,163,28,.1); border-color: rgba(244,163,28,.35); }
-    .card.active .card-name { color: var(--orange); }
-    .card.active .card-tag  { color: var(--orange-dark); }
-
-    /* ── LOCKED ───────────────────────────────────────────── */
+    /* LOCKED */
     .card.locked { border-left-color: #242424; opacity: .38; }
     .card.locked .badge    { color: #2e2e2e; background: transparent; border-color: #1e1e1e; }
     .card.locked .card-name { color: #2a2a2a; }
     .card.locked .card-tag  { color: #222; }
 
-    /* ── Badge ───────────────────────────────────────────── */
+    /* Badge */
     .badge {
       font-family: 'Oswald', sans-serif; font-size: 10px; font-weight: 600;
       letter-spacing: 1px; padding: 4px 10px; border-radius: 2px;
@@ -224,7 +197,7 @@
       color: var(--orange-dark); white-space: nowrap;
     }
 
-    /* ── Card body ───────────────────────────────────────── */
+    /* Card body */
     .card-body { flex: 1; min-width: 0; }
     .card-name {
       font-size: 16px; font-weight: 700; letter-spacing: .3px;
@@ -235,7 +208,7 @@
       text-transform: uppercase; margin-top: 2px;
     }
 
-    /* ── Footer ──────────────────────────────────────────── */
+    /* Footer */
     .footer {
       margin-top: 58px; text-align: center;
       border-top: 1px solid rgba(244,163,28,.08); padding-top: 24px;
@@ -251,46 +224,42 @@
   <div class="bg-layer"></div>
   <div class="scanlines"></div>
 
-  <!-- HUD -->
   <div class="hud">
     <div class="hud-label">Progreso</div>
     <div class="hud-stars">
       <div class="hud-star lit"></div>
-      <div class="hud-star"></div>
+      <div class="hud-star lit"></div>
       <div class="hud-star"></div>
       <div class="hud-star"></div>
       <div class="hud-star"></div>
     </div>
-    <div class="hud-fraction">1/16</div>
+    <div class="hud-fraction">6/15</div>
   </div>
 
   <div class="container">
 
-    <!-- Header -->
     <header class="header">
       <p class="eyebrow">★ Rockstar Education Presents ★</p>
       <h1 class="game-title">Plataformas<br>Móviles</h1>
       <p class="deck">Trabajos Prácticos — Misiones del Semestre</p>
       <div class="stars-row">
         <div class="star-big"></div>
-        <div class="star-big dim"></div>
+        <div class="star-big"></div>
         <div class="star-big dim"></div>
         <div class="star-big dim"></div>
         <div class="star-big dim"></div>
       </div>
     </header>
 
-    <!-- Progress -->
     <div class="progress-strip">
       <span class="prog-lbl">Completado</span>
       <div class="prog-track"><div class="prog-fill"></div></div>
-      <span class="prog-count">1 / 16</span>
+      <span class="prog-count">6 / 15</span>
     </div>
 
     <div class="divider"></div>
     <p class="section-head">Listado de Misiones</p>
 
-    <!-- Grid -->
     <div class="grid">
 
       <!-- TP 01 — DONE -->
@@ -304,49 +273,62 @@
         </div>
       </a>
 
-      <!-- TP 02 — ACTIVE -->
+      <!-- TP 02 — DONE -->
       <a href="tp-2/" class="card-link">
-        <div class="card active">
+        <div class="card done">
           <div class="badge">TP 02</div>
           <div class="card-body">
             <div class="card-name">Segundo Trabajo</div>
-            <div class="card-tag">► En Curso</div>
+            <div class="card-tag">★ Mission Passed</div>
           </div>
         </div>
       </a>
 
-      <!-- TP 03 — ACTIVE -->
+      <!-- TP 03 — DONE -->
       <a href="tp-3/" class="card-link">
-        <div class="card active">
+        <div class="card done">
           <div class="badge">TP 03</div>
           <div class="card-body">
             <div class="card-name">Tercer Trabajo</div>
-            <div class="card-tag">► En Curso</div>
+            <div class="card-tag">★ Mission Passed</div>
           </div>
         </div>
       </a>
 
-      <!-- TP 04–16 — LOCKED -->
-      <div class="card-link"><div class="card locked">
-        <div class="badge">TP 04</div>
-        <div class="card-body"><div class="card-name">Cuarto Trabajo</div><div class="card-tag">⬛ Bloqueado</div></div>
-      </div></div>
+      <!-- TP 04 — DONE -->
+      <a href="tp-4/" class="card-link">
+        <div class="card done">
+          <div class="badge">TP 04</div>
+          <div class="card-body">
+            <div class="card-name">Cuarto Trabajo</div>
+            <div class="card-tag">★ Mission Passed</div>
+          </div>
+        </div>
+      </a>
 
-      <div class="card-link"><div class="card locked">
-        <div class="badge">TP 05</div>
-        <div class="card-body"><div class="card-name">Quinto Trabajo</div><div class="card-tag">⬛ Bloqueado</div></div>
-      </div></div>
+      <!-- TP 06 — DONE (TP 05 no existe) -->
+      <a href="tp-6/" class="card-link">
+        <div class="card done">
+          <div class="badge">TP 06</div>
+          <div class="card-body">
+            <div class="card-name">Sexto Trabajo</div>
+            <div class="card-tag">★ Mission Passed</div>
+          </div>
+        </div>
+      </a>
 
-      <div class="card-link"><div class="card locked">
-        <div class="badge">TP 06</div>
-        <div class="card-body"><div class="card-name">Sexto Trabajo</div><div class="card-tag">⬛ Bloqueado</div></div>
-      </div></div>
+      <!-- TP 07 — DONE -->
+      <a href="tp-7/" class="card-link">
+        <div class="card done">
+          <div class="badge">TP 07</div>
+          <div class="card-body">
+            <div class="card-name">Séptimo Trabajo</div>
+            <div class="card-tag">★ Mission Passed</div>
+          </div>
+        </div>
+      </a>
 
-      <div class="card-link"><div class="card locked">
-        <div class="badge">TP 07</div>
-        <div class="card-body"><div class="card-name">Séptimo Trabajo</div><div class="card-tag">⬛ Bloqueado</div></div>
-      </div></div>
-
+      <!-- TP 08–16 — LOCKED -->
       <div class="card-link"><div class="card locked">
         <div class="badge">TP 08</div>
         <div class="card-body"><div class="card-name">Octavo Trabajo</div><div class="card-tag">⬛ Bloqueado</div></div>
@@ -392,7 +374,7 @@
         <div class="card-body"><div class="card-name">Decimosexto Trabajo</div><div class="card-tag">⬛ Bloqueado</div></div>
       </div></div>
 
-    </div><!-- /grid -->
+    </div>
 
     <footer class="footer">
       <p class="footer-txt">Plataformas Móviles &mdash; All Practical Works Reserved</p>
